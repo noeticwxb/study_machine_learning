@@ -135,15 +135,16 @@ def hand_writing_class_test():
 
         print "total error count %d, rate is %f" % (num_error, (float)(num_error) / (float)(len(test_name_list)))
 
-hand_writing_class_test()
-#group,labels = create_dataset()
-#print classify0([0,0],group,labels,3)
+if __name__ == '__main__':
+    hand_writing_class_test()
+    #group,labels = create_dataset()
+    #print classify0([0,0],group,labels,3)
 
-#fg = plt.figure()
-#ax = fg.add_subplot(111)
-#count = dating_data_mat.shape[0]
-#ax.scatter(dating_data_mat[:,1],dating_data_mat[:,2],15*np.array(dating_labels),np.array(dating_labels))
-#plt.show()
+    #fg = plt.figure()
+    #ax = fg.add_subplot(111)
+    #count = dating_data_mat.shape[0]
+    #ax.scatter(dating_data_mat[:,1],dating_data_mat[:,2],15*np.array(dating_labels),np.array(dating_labels))
+    #plt.show()
 
 
 
