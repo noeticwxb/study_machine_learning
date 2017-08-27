@@ -1,8 +1,11 @@
 # -*- coding:utf-8 -*-
 import numpy as np
 import operator
+import json
+import os
+import tree_plotter
 
-def create_dataset():
+def create_test_dataset():
     dataset = [[1,1,'yes'],
                 [1,1,'yes'],
                 [1,0,'no'],
@@ -94,9 +97,60 @@ def create_tree(dataset,feature_names):
     return  tree
 
 
+def classify(my_tree,feature_lables,to_classify_vec): #type:(dict,list,list)->str
+    first_str = my_tree.keys()[0]
+    search_dict = my_tree[first_str] #type:dict
+    feature_index = feature_lables.index(first_str)
+    classify_label = ''
+    for key,node in search_dict.iteritems():
+        if to_classify_vec[feature_index] == key:
+            if type(node).__name__=='dict':
+                classify_label = classify(node,feature_lables,to_classify_vec)
+            else:
+                classify_label = node
+    return classify_label
+
+
+def load_tree(filename):
+    with open(filename,'r') as file_obj:
+        load_dict = json.load(file_obj,ensure_ascii=True)
+        print load_dict
+        return load_dict
+
+
+def write_tree(my_tree,filename):
+    with open(filename,'w') as file_obj:
+        json.dump(my_tree,file_obj)
+
+
+def read_data_set():
+    abs_cur_dir = os.path.abspath(os.curdir)
+    file_name = os.path.join(abs_cur_dir,"data/ch03/lenses.txt")
+    data_set = []
+    with open(file_name,'r') as file_obj:
+        for line in file_obj:
+            data_vec = line.strip().split('\t')
+            data_set.append(data_vec)
+    return data_set
+
+
 if __name__ == '__main__':
-    dataset,feature_names = create_dataset()
+    #dataset,feature_names = create_test_dataset()
     #print calc_shannon_ent(dataset)
     #print choose_best_feature_to_split(dataset)
-    tree = create_tree(dataset,feature_names)
-    print tree
+    #tree = create_tree(dataset,feature_names)
+    #write_tree(tree,'d:\\tree.json')
+    #load_tree('d:\\tree.json')
+    #print tree
+    data_set = read_data_set()
+    data_lables = ['age','prescript','astigmatic','tearrate']
+    my_tree = create_tree(data_set,data_lables)
+    #tree_plotter.create_plot(my_tree)
+    error_count = 0
+    for data_vec in data_set:
+        ret = classify(my_tree,data_lables,data_vec)
+        ret_right = data_vec[-1]
+        if(ret != ret_right):
+            error_count += 1
+    error_percentage = float(error_count) / float(len(data_set));
+    print error_percentage;

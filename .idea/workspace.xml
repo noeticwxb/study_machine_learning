@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d8c0c08-819c-434f-bdef-8fea57703116" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tree_plotter.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tree_plotter.py" afterPath="$PROJECT_DIR$/tree_plotter.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trees.py" afterPath="$PROJECT_DIR$/trees.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,42 +16,50 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="kNN.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/kNN.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="144" column="37" lean-forward="false" selection-start-line="144" selection-start-column="37" selection-end-line="144" selection-end-column="37" />
+            <state relative-caret-position="30">
+              <caret line="115" column="68" lean-forward="false" selection-start-line="115" selection-start-column="18" selection-end-line="115" selection-end-column="68" />
               <folding>
                 <element signature="e#2809#3070#0" expanded="false" />
                 <element signature="e#3130#3625#0" expanded="false" />
-                <element signature="e#3663#4817#0" expanded="false" />
+                <element signature="e#4850#5173#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="trees.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="trees.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/trees.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="22" />
+            <state relative-caret-position="397">
+              <caret line="155" column="27" lean-forward="true" selection-start-line="155" selection-start-column="27" selection-end-line="155" selection-end-column="27" />
               <folding>
                 <element signature="e#23#41#0" expanded="true" />
+                <element signature="e#132#350#0" expanded="false" />
+                <element signature="e#388#760#0" expanded="false" />
+                <element signature="e#823#1103#0" expanded="false" />
+                <element signature="e#1153#2016#0" expanded="false" />
+                <element signature="e#2053#2352#0" expanded="false" />
+                <element signature="e#3889#4032#0" expanded="false" />
+                <element signature="e#4073#4145#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tree_plotter.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="tree_plotter.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tree_plotter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="75" column="17" lean-forward="true" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="17" />
+            <state relative-caret-position="456">
+              <caret line="53" column="20" lean-forward="true" selection-start-line="53" selection-start-column="20" selection-end-line="53" selection-end-column="20" />
               <folding>
-                <element signature="e#1543#1858#0" expanded="false" />
-                <element signature="e#1876#2408#0" expanded="false" />
+                <element signature="e#1876#2815#0" expanded="false" />
+                <element signature="e#2954#3979#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -59,40 +68,8 @@
       <file leaf-file-name="__builtin__.py" pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/.PyCharmCE2017.1/system/python_stubs/1494736245/__builtin__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10013">
-              <caret line="527" column="4" lean-forward="false" selection-start-line="527" selection-start-column="4" selection-end-line="527" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="umath.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.PyCharmCE2017.1/system/python_stubs/1494736245/numpy/core/umath.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="58596">
-              <caret line="3148" column="58" lean-forward="false" selection-start-line="3148" selection-start-column="58" selection-end-line="3148" selection-end-column="58" />
-              <folding>
-                <element signature="e#106293#108671#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="study_numpy.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/study_numpy.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+            <state relative-caret-position="62880">
+              <caret line="2096" column="34" lean-forward="false" selection-start-line="2096" selection-start-column="34" selection-end-line="2096" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -113,6 +90,7 @@
       <find>open</find>
       <find>np.arary</find>
       <find>labels</find>
+      <find>create_dataset</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -125,8 +103,8 @@
         <option value="$PROJECT_DIR$/study_numpy.py" />
         <option value="/PyFunctionTypeComment Fragment (kNN.py:1689).functionTypeComment" />
         <option value="$PROJECT_DIR$/kNN.py" />
-        <option value="$PROJECT_DIR$/trees.py" />
         <option value="$PROJECT_DIR$/tree_plotter.py" />
+        <option value="$PROJECT_DIR$/trees.py" />
       </list>
     </option>
   </component>
@@ -153,13 +131,16 @@
     <panes>
       <pane id="ProjectPane">
         <subPane>
-          <expand>
-            <path>
-              <item name="study_machine_learning" type="b2602c69:ProjectViewProjectNode" />
-              <item name="study_machine_learning" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="study_machine_learning" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="study_machine_learning" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -168,7 +149,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/trees.py" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -183,6 +164,24 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.main">
+    <configuration default="false" name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="D:\Python27\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="HelloNumPy" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/trees.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -247,23 +246,9 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method />
     </configuration>
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="D:\Python27\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="HelloNumPy" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tree_plotter.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-    </configuration>
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="Python.main" />
+    </list>
     <recent_temporary>
       <list size="1">
         <item index="0" class="java.lang.String" itemvalue="Python.main" />
@@ -284,18 +269,19 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1696" height="1026" extended-state="0" />
+    <frame x="-8" y="-8" width="1696" height="1026" extended-state="7" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1393643" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13869047" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922733" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2911534" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29508197" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31578946" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3147541" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -318,7 +304,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="14" />
+      <option name="time" value="23" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -351,7 +337,7 @@
           <folding>
             <element signature="e#2809#3070#0" expanded="false" />
             <element signature="e#3130#3625#0" expanded="false" />
-            <element signature="e#3663#4817#0" expanded="false" />
+            <element signature="e#4850#5173#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -384,7 +370,7 @@
           <folding>
             <element signature="e#2809#3070#0" expanded="false" />
             <element signature="e#3130#3625#0" expanded="false" />
-            <element signature="e#3663#4817#0" expanded="false" />
+            <element signature="e#4850#5173#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -417,7 +403,7 @@
           <folding>
             <element signature="e#2809#3070#0" expanded="false" />
             <element signature="e#3130#3625#0" expanded="false" />
-            <element signature="e#3663#4817#0" expanded="false" />
+            <element signature="e#4850#5173#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -471,7 +457,7 @@
           <folding>
             <element signature="e#2809#3070#0" expanded="false" />
             <element signature="e#3130#3625#0" expanded="false" />
-            <element signature="e#3663#4817#0" expanded="false" />
+            <element signature="e#4850#5173#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -518,7 +504,7 @@
           <folding>
             <element signature="e#2809#3070#0" expanded="false" />
             <element signature="e#3130#3625#0" expanded="false" />
-            <element signature="e#3663#4817#0" expanded="false" />
+            <element signature="e#4850#5173#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -634,7 +620,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -645,25 +630,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.PyCharmCE2017.1/system/python_stubs/1494736245/numpy/core/umath.py">
+    <entry file="file://D:/Python27/Lib/site-packages/matplotlib/artist.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58596">
-          <caret line="3148" column="58" lean-forward="false" selection-start-line="3148" selection-start-column="58" selection-end-line="3148" selection-end-column="58" />
-          <folding>
-            <element signature="e#106293#108671#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kNN.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="144" column="37" lean-forward="false" selection-start-line="144" selection-start-column="37" selection-end-line="144" selection-end-column="37" />
-          <folding>
-            <element signature="e#2809#3070#0" expanded="false" />
-            <element signature="e#3130#3625#0" expanded="false" />
-            <element signature="e#3663#4817#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="346">
+          <caret line="885" column="16" lean-forward="true" selection-start-line="885" selection-start-column="16" selection-end-line="885" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -671,43 +641,60 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="22" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2017.1/system/python_stubs/1494736245/numpy/core/umath.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="820">
+          <caret line="3148" column="58" lean-forward="false" selection-start-line="3148" selection-start-column="58" selection-end-line="3148" selection-end-column="58" />
         </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/.PyCharmCE2017.1/system/python_stubs/1494736245/__builtin__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10013">
-          <caret line="527" column="4" lean-forward="false" selection-start-line="527" selection-start-column="4" selection-end-line="527" selection-end-column="4" />
+        <state relative-caret-position="62880">
+          <caret line="2096" column="34" lean-forward="false" selection-start-line="2096" selection-start-column="34" selection-end-line="2096" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/trees.py">
+    <entry file="file://$PROJECT_DIR$/kNN.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="22" />
+        <state relative-caret-position="30">
+          <caret line="115" column="68" lean-forward="false" selection-start-line="115" selection-start-column="18" selection-end-line="115" selection-end-column="68" />
           <folding>
-            <element signature="e#23#41#0" expanded="true" />
+            <element signature="e#2809#3070#0" expanded="false" />
+            <element signature="e#3130#3625#0" expanded="false" />
+            <element signature="e#4850#5173#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/Python27/Lib/site-packages/matplotlib/artist.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="885" column="16" lean-forward="true" selection-start-line="885" selection-start-column="16" selection-end-line="885" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tree_plotter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="75" column="17" lean-forward="true" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="17" />
+        <state relative-caret-position="456">
+          <caret line="53" column="20" lean-forward="true" selection-start-line="53" selection-start-column="20" selection-end-line="53" selection-end-column="20" />
           <folding>
-            <element signature="e#1543#1858#0" expanded="false" />
-            <element signature="e#1876#2408#0" expanded="false" />
+            <element signature="e#1876#2815#0" expanded="false" />
+            <element signature="e#2954#3979#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trees.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="155" column="27" lean-forward="true" selection-start-line="155" selection-start-column="27" selection-end-line="155" selection-end-column="27" />
+          <folding>
+            <element signature="e#23#41#0" expanded="true" />
+            <element signature="e#132#350#0" expanded="false" />
+            <element signature="e#388#760#0" expanded="false" />
+            <element signature="e#823#1103#0" expanded="false" />
+            <element signature="e#1153#2016#0" expanded="false" />
+            <element signature="e#2053#2352#0" expanded="false" />
+            <element signature="e#3889#4032#0" expanded="false" />
+            <element signature="e#4073#4145#0" expanded="false" />
           </folding>
         </state>
       </provider>

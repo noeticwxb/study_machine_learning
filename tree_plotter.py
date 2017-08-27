@@ -46,7 +46,7 @@ def get_num_depth(my_tree): #type:(dict)->int
     childs = my_tree[root_name] #type:dict
     for child_name in childs.keys():
         if type(childs[child_name]).__name__ == 'dict':
-            this_depth = get_num_leafs(childs[child_name])
+            this_depth = get_num_depth(childs[child_name])+1
         else:
             this_depth = 1
         if this_depth > max_depth:
