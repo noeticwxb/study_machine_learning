@@ -1,5 +1,7 @@
 # -*- coding:utf-8 -*-
 import numpy as np
+import io
+import re
 
 def load_dataset():#type:()->(list,list)
     posting_list = [['my', 'dog', 'has', 'flea', 'problems', 'help', 'please'],
@@ -48,6 +50,17 @@ def train_NB0(train_matrix,train_category):
 
     return p0_vect,p1_vect,p_abusive
 
+def text_parse(text):
+    tokens = re.split(r"\W*",text)
+    return  [token.lower() for token in tokens if len(token) > 2 ]
+
+def spam_test():
+    for i in range(1,26):
+        email_text = io.open("data/ch04/email/spam/%d.txt" % i).read()
+
+
+
+
 
 def test():
     data_set,classify_labels = load_dataset()
@@ -62,5 +75,4 @@ def test():
     print p2_vec
 
 if __name__ == '__main__':
-    test()
-
+    print text_parse("355 eeee i love her")
