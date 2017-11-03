@@ -2,6 +2,8 @@
 import numpy as np
 import io
 import re
+import random
+import math
 
 def load_dataset():#type:()->(list,list)
     posting_list = [['my', 'dog', 'has', 'flea', 'problems', 'help', 'please'],
@@ -14,13 +16,11 @@ def load_dataset():#type:()->(list,list)
     class_vec = [0,1,0,1,0,1]
     return posting_list,class_vec
 
-
 def create_vocab_list(dataset):
     vocab_set = set()
     for doc in dataset:
         vocab_set = vocab_set | set(doc)
     return list(vocab_set)
-
 
 def set_of_word_to_vec(vocab_list,word_list): #type:(list,list)->list
     ret_vec = [0]*len(vocab_list)
@@ -30,7 +30,6 @@ def set_of_word_to_vec(vocab_list,word_list): #type:(list,list)->list
         else:
             print "the word %s is not in vocabulary" % word
     return ret_vec
-
 
 def train_NB0(train_matrix,train_category):
     p_abusive = np.sum(train_category) / float(len(train_category))
@@ -45,20 +44,72 @@ def train_NB0(train_matrix,train_category):
         else:
             p1_accumulate += train_matrix[i]
 
-    p0_vect = p0_accumulate / float(sum(p0_accumulate))
-    p1_vect = p1_accumulate / float(sum(p1_accumulate))
+    print sum(p0_accumulate)
+    p0_vect = np.log(p0_accumulate / float(sum(p0_accumulate)))
+    print sum(p1_accumulate)
+    p1_vect = np.log(p1_accumulate / float(sum(p1_accumulate)))
 
     return p0_vect,p1_vect,p_abusive
+
+
+def classify_NB0(vec_to_classify,p0_vect,p1_vect,p_abusive):
+    p0 = sum(vec_to_classify*p0_vect) + np.log(p_abusive)
+    p1 = sum(vec_to_classify*p1_vect) + np.log(p_abusive)
+    if(p1 > p0):
+        return 1
+    else:
+        return 0
 
 def text_parse(text):
     tokens = re.split(r"\W*",text)
     return  [token.lower() for token in tokens if len(token) > 2 ]
 
 def spam_test():
+    mail_list = []
+    class_list = []
+    #full_word_list = []
     for i in range(1,26):
-        email_text = io.open("data/ch04/email/spam/%d.txt" % i).read()
+        # spam
+        file_name = "data/ch04/email/spam/%d.txt" % i
+        #print file_name
+        email_words = io.open(file_name,encoding='UTF-8').read()
+        mail_list.append(email_words)
+        class_list.append(1)
+        #full_word_list.extend(email_words)
+        #
+        file_name = "data/ch04/email/ham/%d.txt" % i
+        #print file_name
+        email_words = io.open(file_name,encoding='UTF-8').read()
+        mail_list.append(email_words)
+        class_list.append(0)
+        #full_word_list.extend(email_words)
 
+    train_set = range(50)
+    test_set = []
+    for i in range(10):
+        randIndex = int(random.uniform(0,len(train_set)))
+        test_set.append(train_set[randIndex])
+        del(train_set[randIndex])
 
+    vocab_list = create_vocab_list(mail_list)
+
+    train_mat=[]
+    train_class =[]
+    for doc_index in train_set:
+        train_vec = set_of_word_to_vec(vocab_list,mail_list[doc_index])
+        train_mat.append( train_vec)
+        train_class.append( class_list[doc_index] )
+
+    p0_vect, p1_vect, p_abusive = train_NB0(train_mat,train_class)
+
+    error_count = 0
+    for doc_index in test_set:
+        test_vec = set_of_word_to_vec(vocab_list,mail_list[doc_index])
+        classfy__ret = classify_NB0(test_vec,p0_vect,p1_vect,p_abusive)
+        if classfy__ret != class_list[doc_index]:
+            error_count += 1
+
+    print "erro rate is %f " % float(error_count)/len(test_set)
 
 
 
@@ -75,4 +126,4 @@ def test():
     print p2_vec
 
 if __name__ == '__main__':
-    print text_parse("355 eeee i love her")
+    spam_test()
