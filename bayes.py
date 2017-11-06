@@ -36,18 +36,22 @@ def train_NB0(train_matrix,train_category):
 
     num_train_doc = len(train_matrix)
     num_words_one_doc = len(train_matrix[0])
-    p0_accumulate = np.zeros(num_words_one_doc)
-    p1_accumulate = np.zeros(num_words_one_doc)
+    p0_accumulate = np.ones(num_words_one_doc)
+    p1_accumulate = np.ones(num_words_one_doc)
+    p0_sum = 2
+    p1_sum = 2
     for i in range(0,num_train_doc):
         if train_category[i] == 0:
             p0_accumulate += train_matrix[i]
+            p0_sum += sum(train_matrix[i])
         else:
             p1_accumulate += train_matrix[i]
+            p1_sum += sum(train_matrix[i])
 
     print sum(p0_accumulate)
-    p0_vect = np.log(p0_accumulate / float(sum(p0_accumulate)))
+    p0_vect = np.log(p0_accumulate / p0_sum)
     print sum(p1_accumulate)
-    p1_vect = np.log(p1_accumulate / float(sum(p1_accumulate)))
+    p1_vect = np.log(p1_accumulate / p1_sum)
 
     return p0_vect,p1_vect,p_abusive
 
@@ -109,7 +113,7 @@ def spam_test():
         if classfy__ret != class_list[doc_index]:
             error_count += 1
 
-    print "erro rate is %f " % float(error_count)/len(test_set)
+    print "erro rate is %f " % (float(error_count)/len(test_set))
 
 
 
