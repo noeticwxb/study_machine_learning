@@ -4,6 +4,8 @@ import io
 import re
 import random
 import math
+import feedparser
+import operator
 
 def load_dataset():#type:()->(list,list)
     posting_list = [['my', 'dog', 'has', 'flea', 'problems', 'help', 'please'],
@@ -31,6 +33,13 @@ def set_of_word_to_vec(vocab_list,word_list): #type:(list,list)->list
             print "the word %s is not in vocabulary" % word
     return ret_vec
 
+def bag_of_word_to_vec_nm(vocab_list,word_list):
+    return_vec = [0] * len(vocab_list)
+    for word in word_list:
+        if word in vocab_list:
+            return_vec[ vocab_list.index(word) ] += 1
+    return return_vec
+
 def train_NB0(train_matrix,train_category):
     p_abusive = np.sum(train_category) / float(len(train_category))
 
@@ -48,13 +57,12 @@ def train_NB0(train_matrix,train_category):
             p1_accumulate += train_matrix[i]
             p1_sum += sum(train_matrix[i])
 
-    print sum(p0_accumulate)
+    #print sum(p0_accumulate)
     p0_vect = np.log(p0_accumulate / p0_sum)
-    print sum(p1_accumulate)
+    #print sum(p1_accumulate)
     p1_vect = np.log(p1_accumulate / p1_sum)
 
     return p0_vect,p1_vect,p_abusive
-
 
 def classify_NB0(vec_to_classify,p0_vect,p1_vect,p_abusive):
     p0 = sum(vec_to_classify*p0_vect) + np.log(p_abusive)
@@ -115,7 +123,75 @@ def spam_test():
 
     print "erro rate is %f " % (float(error_count)/len(test_set))
 
+# 读取两个RSS源，使用贝叶斯方法进行分类。看分类是否正确
+def rss_test_start():
+    print "read rss and parse"
+    rss_url_1 = "https://newyork.craigslist.org/search/stp?format=rss"
+    rss_url_2 = "https://sfbay.craigslist.org/search/stp?format=rss"
+    ny_feed = feedparser.parse(rss_url_1)
+    sf_feed = feedparser.parse(rss_url_2)
+    print "begin classfy"
+    rss_test(ny_feed,sf_feed)
 
+def cal_most_frequency(vocab_list,full_words):
+    freq_dict = {}
+    for vocab in vocab_list:
+        freq_dict[vocab] = full_words.count(vocab)
+    sorted_freq_dict = sorted(freq_dict.iteritems(),key=operator.itemgetter(1), reverse=True)
+    return sorted_freq_dict[:30]
+
+def rss_test(feed0, feed1):
+    ENTRIES = 'entries'
+    SUMMARY = 'summary'
+
+    # read rss and construct dataset
+    doc_list = []
+    class_list = []
+    full_words = []
+    min_len = min(len(feed0[ENTRIES]),len(feed1[ENTRIES]))
+    for idoc in range(min_len):
+        doc = text_parse(feed0[ENTRIES][idoc][SUMMARY])
+        doc_list.append(doc)
+        class_list.append(0)
+        full_words.extend(doc)
+        doc = text_parse(feed0[ENTRIES][idoc][SUMMARY])
+        doc_list.append(doc)
+        class_list.append(1)
+        full_words.extend(doc)
+
+    # construct vocab_list, and remove frequence top 30
+    vocab_list = create_vocab_list(doc_list)
+    freq_dict = cal_most_frequency(vocab_list,full_words)
+    for wordPair in freq_dict:
+        if wordPair[0] in vocab_list:
+            vocab_list.remove(wordPair[0])
+
+    # construct train_set and test_set
+    train_set = range( len(doc_list) )
+    test_set = []
+    test_set_size = len(doc_list) / 10
+    for i in range( test_set_size ):
+        rand_index = int(random.uniform(0, len(train_set)))
+        test_set.append( train_set[rand_index])
+        del(train_set[rand_index] )
+
+    train_matrix = []
+    train_category = []
+    for iDoc in test_set:
+        vec_to_train = bag_of_word_to_vec_nm(vocab_list,doc_list[iDoc])
+        train_matrix.append(vec_to_train)
+        train_category.append(class_list[iDoc])
+
+    p0_vect, p1_vect, p_abusive = train_NB0(train_matrix,train_category)
+
+    error_count = 0
+    for iDoc in train_set:
+        vec_to_classify =bag_of_word_to_vec_nm(vocab_list,doc_list[iDoc])
+        ret = classify_NB0(vec_to_classify, p0_vect, p1_vect, p_abusive)
+        if ret != class_list[iDoc]:
+            error_count += 1
+
+    print "Error count is %d rate is %f" % (error_count, float(error_count) / len(train_set) )
 
 def test():
     data_set,classify_labels = load_dataset()
@@ -130,4 +206,5 @@ def test():
     print p2_vec
 
 if __name__ == '__main__':
-    spam_test()
+    rss_test_start()
+
