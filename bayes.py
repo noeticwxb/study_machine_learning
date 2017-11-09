@@ -29,8 +29,8 @@ def set_of_word_to_vec(vocab_list,word_list): #type:(list,list)->list
     for word in word_list:
         if word in vocab_list:
             ret_vec[vocab_list.index(word)]=1
-        else:
-            print "the word %s is not in vocabulary" % word
+        #else:
+        #    print "the word %s is not in vocabulary" % word
     return ret_vec
 
 def bag_of_word_to_vec_nm(vocab_list,word_list):
@@ -138,7 +138,7 @@ def cal_most_frequency(vocab_list,full_words):
     for vocab in vocab_list:
         freq_dict[vocab] = full_words.count(vocab)
     sorted_freq_dict = sorted(freq_dict.iteritems(),key=operator.itemgetter(1), reverse=True)
-    return sorted_freq_dict[:30]
+    return sorted_freq_dict[:50]
 
 def rss_test(feed0, feed1):
     ENTRIES = 'entries'
@@ -149,6 +149,7 @@ def rss_test(feed0, feed1):
     class_list = []
     full_words = []
     min_len = min(len(feed0[ENTRIES]),len(feed1[ENTRIES]))
+
     for idoc in range(min_len):
         doc = text_parse(feed0[ENTRIES][idoc][SUMMARY])
         doc_list.append(doc)
@@ -166,6 +167,8 @@ def rss_test(feed0, feed1):
         if wordPair[0] in vocab_list:
             vocab_list.remove(wordPair[0])
 
+    #print_vocab_list_in_order2(vocab_list,full_words)
+
     # construct train_set and test_set
     train_set = range( len(doc_list) )
     test_set = []
@@ -177,21 +180,24 @@ def rss_test(feed0, feed1):
 
     train_matrix = []
     train_category = []
-    for iDoc in test_set:
+    for iDoc in train_set:
         vec_to_train = bag_of_word_to_vec_nm(vocab_list,doc_list[iDoc])
         train_matrix.append(vec_to_train)
         train_category.append(class_list[iDoc])
 
     p0_vect, p1_vect, p_abusive = train_NB0(train_matrix,train_category)
 
+    #print_vocab_list_in_order(vocab_list,p0_vect)
+    #print_vocab_list_in_order(vocab_list, p1_vect)
+
     error_count = 0
-    for iDoc in train_set:
+    for iDoc in test_set:
         vec_to_classify =bag_of_word_to_vec_nm(vocab_list,doc_list[iDoc])
         ret = classify_NB0(vec_to_classify, p0_vect, p1_vect, p_abusive)
         if ret != class_list[iDoc]:
             error_count += 1
 
-    print "Error count is %d rate is %f" % (error_count, float(error_count) / len(train_set) )
+    print "Error count is %d rate is %f" % (error_count, float(error_count) / len(test_set) )
 
 def test():
     data_set,classify_labels = load_dataset()
@@ -201,10 +207,28 @@ def test():
         train_vec = set_of_word_to_vec(vocab_list,doc)
         train_matrix.append(train_vec)
     p1_vec,p2_vec,p_abusive = train_NB0(train_matrix,classify_labels)
-    print vocab_list
-    print p1_vec
-    print p2_vec
+    #print vocab_list
+    #print p1_vec
+    #print p2_vec
+
+def print_vocab_list_in_order2(vocab_list, full_words):
+    dict = {}
+    for i in range( len(vocab_list) ):
+        dict[vocab_list[i]] = full_words.count(vocab_list[i])
+    dict_sorted = sorted(dict.iteritems(),key=operator.itemgetter(1),reverse=False)
+    print "sorted"
+    print dict_sorted[:10]
+
+def print_vocab_list_in_order(vocab_list,p_vect):
+    dict = {}
+    for i in range( len(vocab_list) ):
+        dict[vocab_list[i]] = p_vect[i]
+    dict_sorted = sorted(dict.iteritems(),key=operator.itemgetter(1),reverse=True)
+    #print dict_sorted[:20]
+    print "sorted"
+    print dict_sorted[:10]
 
 if __name__ == '__main__':
     rss_test_start()
+    #spam_test()
 
