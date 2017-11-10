@@ -4,10 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/kNN.py" line="150" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d8c0c08-819c-434f-bdef-8fea57703116" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bayes.py" afterPath="$PROJECT_DIR$/bayes.py" />
-    </list>
+    <list default="true" id="2d8c0c08-819c-434f-bdef-8fea57703116" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,12 +47,13 @@
       <file leaf-file-name="bayes.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bayes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="565">
-              <caret line="198" column="0" lean-forward="true" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
+            <state relative-caret-position="120">
+              <caret line="175" column="21" lean-forward="true" selection-start-line="175" selection-start-column="21" selection-end-line="175" selection-end-column="21" />
               <folding>
                 <element signature="e#23#41#0" expanded="true" />
                 <element signature="e#168#736#0" expanded="false" />
                 <element signature="e#774#883#0" expanded="false" />
+                <element signature="e#959#1187#0" expanded="false" />
                 <element signature="e#1242#1410#0" expanded="false" />
                 <element signature="e#1460#2182#0" expanded="false" />
                 <element signature="e#2249#2421#0" expanded="false" />
@@ -64,9 +62,12 @@
                 <element signature="e#2663#3188#0" expanded="false" />
                 <element signature="e#3521#3673#0" expanded="false" />
                 <element signature="e#3802#4015#0" expanded="false" />
-                <element signature="e#4995#5276#0" expanded="false" />
-                <element signature="e#6707#7062#0" expanded="false" />
-                <element signature="e#7124#7364#0" expanded="false" />
+                <element signature="e#4141#4447#0" expanded="false" />
+                <element signature="e#4500#4721#0" expanded="false" />
+                <element signature="e#6767#7122#0" expanded="false" />
+                <element signature="e#7184#7424#0" expanded="false" />
+                <element signature="e#7480#7725#0" expanded="false" />
+                <element signature="e#7755#8375#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -107,15 +108,15 @@
         <option value="$PROJECT_DIR$/kNN.py" />
         <option value="$PROJECT_DIR$/tree_plotter.py" />
         <option value="$PROJECT_DIR$/trees.py" />
+        <option value="$PROJECT_DIR$/bayes_ori.py" />
         <option value="$PROJECT_DIR$/bayes.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-34" />
-    <option name="y" value="32" />
-    <option name="width" value="1683" />
-    <option name="height" value="1026" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="-7" />
+    <option name="width" value="854" />
+    <option name="height" value="1017" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -268,13 +269,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
+    <frame x="-8" y="-8" width="1696" height="1026" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28728607" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20983607" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.56390136" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922733" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -303,25 +304,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="27" />
+      <option name="time" value="28" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/study_numpy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="33" column="9" lean-forward="false" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/Python27/Lib/site-packages/matplotlib/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="35568">
@@ -636,14 +623,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://D:/BaiduNetdiskDownload/MLiA_SourceCode/machinelearninginaction/Ch04/bayes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bayes_ori.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="502">
+          <caret line="177" column="0" lean-forward="false" selection-start-line="177" selection-start-column="0" selection-end-line="180" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/bayes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="565">
-          <caret line="198" column="0" lean-forward="true" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
+        <state relative-caret-position="120">
+          <caret line="175" column="21" lean-forward="true" selection-start-line="175" selection-start-column="21" selection-end-line="175" selection-end-column="21" />
           <folding>
             <element signature="e#23#41#0" expanded="true" />
             <element signature="e#168#736#0" expanded="false" />
             <element signature="e#774#883#0" expanded="false" />
+            <element signature="e#959#1187#0" expanded="false" />
             <element signature="e#1242#1410#0" expanded="false" />
             <element signature="e#1460#2182#0" expanded="false" />
             <element signature="e#2249#2421#0" expanded="false" />
@@ -652,9 +654,12 @@
             <element signature="e#2663#3188#0" expanded="false" />
             <element signature="e#3521#3673#0" expanded="false" />
             <element signature="e#3802#4015#0" expanded="false" />
-            <element signature="e#4995#5276#0" expanded="false" />
-            <element signature="e#6707#7062#0" expanded="false" />
-            <element signature="e#7124#7364#0" expanded="false" />
+            <element signature="e#4141#4447#0" expanded="false" />
+            <element signature="e#4500#4721#0" expanded="false" />
+            <element signature="e#6767#7122#0" expanded="false" />
+            <element signature="e#7184#7424#0" expanded="false" />
+            <element signature="e#7480#7725#0" expanded="false" />
+            <element signature="e#7755#8375#0" expanded="false" />
           </folding>
         </state>
       </provider>

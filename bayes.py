@@ -138,7 +138,7 @@ def cal_most_frequency(vocab_list,full_words):
     for vocab in vocab_list:
         freq_dict[vocab] = full_words.count(vocab)
     sorted_freq_dict = sorted(freq_dict.iteritems(),key=operator.itemgetter(1), reverse=True)
-    return sorted_freq_dict[:50]
+    return sorted_freq_dict[:30]
 
 def rss_test(feed0, feed1):
     ENTRIES = 'entries'
@@ -153,11 +153,11 @@ def rss_test(feed0, feed1):
     for idoc in range(min_len):
         doc = text_parse(feed0[ENTRIES][idoc][SUMMARY])
         doc_list.append(doc)
-        class_list.append(0)
-        full_words.extend(doc)
-        doc = text_parse(feed0[ENTRIES][idoc][SUMMARY])
-        doc_list.append(doc)
         class_list.append(1)
+        full_words.extend(doc)
+        doc = text_parse(feed1[ENTRIES][idoc][SUMMARY])
+        doc_list.append(doc)
+        class_list.append(0)
         full_words.extend(doc)
 
     # construct vocab_list, and remove frequence top 30
@@ -167,12 +167,13 @@ def rss_test(feed0, feed1):
         if wordPair[0] in vocab_list:
             vocab_list.remove(wordPair[0])
 
-    #print_vocab_list_in_order2(vocab_list,full_words)
+    print_vocab_list_in_order2(vocab_list,full_words)
 
     # construct train_set and test_set
     train_set = range( len(doc_list) )
     test_set = []
-    test_set_size = len(doc_list) / 10
+    #test_set_size = len(doc_list) / 10
+    test_set_size = 5
     for i in range( test_set_size ):
         rand_index = int(random.uniform(0, len(train_set)))
         test_set.append( train_set[rand_index])
@@ -198,6 +199,7 @@ def rss_test(feed0, feed1):
             error_count += 1
 
     print "Error count is %d rate is %f" % (error_count, float(error_count) / len(test_set) )
+    return vocab_list,p0_vect,p1_vect
 
 def test():
     data_set,classify_labels = load_dataset()
@@ -228,7 +230,24 @@ def print_vocab_list_in_order(vocab_list,p_vect):
     print "sorted"
     print dict_sorted[:10]
 
+def getTopWords(ny,sf):
+    import operator
+    vocabList,p0V,p1V=rss_test(ny,sf)
+    topNY=[]; topSF=[]
+    for i in range(len(p0V)):
+        if p0V[i] > -6.0 : topSF.append((vocabList[i],p0V[i]))
+        if p1V[i] > -6.0 : topNY.append((vocabList[i],p1V[i]))
+    sortedSF = sorted(topSF, key=lambda pair: pair[1], reverse=True)
+    print "SF**SF**SF**SF**SF**SF**SF**SF**SF**SF**SF**SF**SF**SF**SF**SF**"
+    for item in sortedSF:
+        print item[0]
+    sortedNY = sorted(topNY, key=lambda pair: pair[1], reverse=True)
+    print "NY**NY**NY**NY**NY**NY**NY**NY**NY**NY**NY**NY**NY**NY**NY**NY**"
+    for item in sortedNY:
+        print item[0]
+
 if __name__ == '__main__':
-    rss_test_start()
-    #spam_test()
+    ny = feedparser.parse("https://newyork.craigslist.org/search/stp?format=rss")
+    sf = feedparser.parse("https://sfbay.craigslist.org/search/stp?format=rss")
+    rss_test(ny, sf)
 
