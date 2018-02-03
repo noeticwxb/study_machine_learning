@@ -121,16 +121,16 @@ def spam_test():
         if classfy__ret != class_list[doc_index]:
             error_count += 1
 
-    print "erro rate is %f " % (float(error_count)/len(test_set))
+    print("erro rate is %f " % (float(error_count)/len(test_set)))
 
 # 读取两个RSS源，使用贝叶斯方法进行分类。看分类是否正确
 def rss_test_start():
-    print "read rss and parse"
+    print("read rss and parse")
     rss_url_1 = "https://newyork.craigslist.org/search/stp?format=rss"
     rss_url_2 = "https://sfbay.craigslist.org/search/stp?format=rss"
     ny_feed = feedparser.parse(rss_url_1)
     sf_feed = feedparser.parse(rss_url_2)
-    print "begin classfy"
+    print("begin classfy")
     rss_test(ny_feed,sf_feed)
 
 def cal_most_frequency(vocab_list,full_words):
@@ -198,7 +198,7 @@ def rss_test(feed0, feed1):
         if ret != class_list[iDoc]:
             error_count += 1
 
-    print "Error count is %d rate is %f" % (error_count, float(error_count) / len(test_set) )
+    print("Error count is %d rate is %f" % (error_count, float(error_count) / len(test_set) ))
     return vocab_list,p0_vect,p1_vect
 
 def test():
@@ -218,8 +218,8 @@ def print_vocab_list_in_order2(vocab_list, full_words):
     for i in range( len(vocab_list) ):
         dict[vocab_list[i]] = full_words.count(vocab_list[i])
     dict_sorted = sorted(dict.iteritems(),key=operator.itemgetter(1),reverse=False)
-    print "sorted"
-    print dict_sorted[:10]
+    print("sorted")
+    print(dict_sorted[:10])
 
 def print_vocab_list_in_order(vocab_list,p_vect):
     dict = {}
@@ -227,8 +227,8 @@ def print_vocab_list_in_order(vocab_list,p_vect):
         dict[vocab_list[i]] = p_vect[i]
     dict_sorted = sorted(dict.iteritems(),key=operator.itemgetter(1),reverse=True)
     #print dict_sorted[:20]
-    print "sorted"
-    print dict_sorted[:10]
+    print("sorted")
+    print(dict_sorted[:10])
 
 def getTopWords(ny,sf):
     import operator
@@ -238,13 +238,13 @@ def getTopWords(ny,sf):
         if p0V[i] > -6.0 : topSF.append((vocabList[i],p0V[i]))
         if p1V[i] > -6.0 : topNY.append((vocabList[i],p1V[i]))
     sortedSF = sorted(topSF, key=lambda pair: pair[1], reverse=True)
-    print "SF**SF**SF**SF**SF**SF**SF**SF**SF**SF**SF**SF**SF**SF**SF**SF**"
+    print("SF**SF**SF**SF**SF**SF**SF**SF**SF**SF**SF**SF**SF**SF**SF**SF**")
     for item in sortedSF:
-        print item[0]
+        print(item[0])
     sortedNY = sorted(topNY, key=lambda pair: pair[1], reverse=True)
-    print "NY**NY**NY**NY**NY**NY**NY**NY**NY**NY**NY**NY**NY**NY**NY**NY**"
+    print("NY**NY**NY**NY**NY**NY**NY**NY**NY**NY**NY**NY**NY**NY**NY**NY**")
     for item in sortedNY:
-        print item[0]
+        print(item[0])
 
 if __name__ == '__main__':
     ny = feedparser.parse("https://newyork.craigslist.org/search/stp?format=rss")

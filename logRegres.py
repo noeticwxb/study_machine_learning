@@ -107,7 +107,7 @@ def test_grad_ascent():
     for i_ret in range(ret_len):
         if test_label[i_ret] != ret[i_ret]:
             error_count += 1
-    print "%.2f%% error" % (float(error_count) *100 /float(ret_len))
+    print("%.2f%% error" % (float(error_count) *100 /float(ret_len)))
     m,n = np.shape(features)
 
 
@@ -163,7 +163,7 @@ def colic_test():
     #weights_mat = np.matrix(stoc_grad_ascent_1(train_features, train_label)).transpose();
     #weights_mat = np.matrix(stoc_grad_ascent_0(train_features, train_label)).transpose();
     current_time2 = datetime.datetime.now()  # first moment
-    print (current_time2 - current_time1).total_seconds()
+    print((current_time2 - current_time1).total_seconds())
 
     test_features, test_label = read_colic_file("data/ch05/horseColicTest.txt")
     test_feature_mat = np.matrix(test_features)
@@ -177,7 +177,7 @@ def colic_test():
     for i_ret in range(ret_len):
         if test_label[i_ret] != ret[i_ret]:
             error_count += 1
-    print "%.2f%% error" % (float(error_count) *100 /float(ret_len))
+    print ("%.2f%% error" % (float(error_count) *100 /float(ret_len)))
 
     #weights = stoc_grad_ascent_1(train_features,train_label)
     #weights = grad_ascent(train_features, train_label)

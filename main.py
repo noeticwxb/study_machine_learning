@@ -8,7 +8,7 @@ aInvertMat = aMat.I
 
 I_Mat = aInvertMat * aMat
 
-print a
-print aMat
-print aInvertMat
-print I_Mat
+print(a)
+print(aMat)
+print(aInvertMat)
+print(I_Mat)

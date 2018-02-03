@@ -98,11 +98,13 @@ def create_tree(dataset,feature_names):
 
 
 def classify(my_tree,feature_lables,to_classify_vec): #type:(dict,list,list)->str
-    first_str = my_tree.keys()[0]
+
+    #first_str = my_tree.keys()[0]
+    first_str = next(iter(my_tree))
     search_dict = my_tree[first_str] #type:dict
     feature_index = feature_lables.index(first_str)
     classify_label = ''
-    for key,node in search_dict.iteritems():
+    for key,node in search_dict.items():
         if to_classify_vec[feature_index] == key:
             if type(node).__name__=='dict':
                 classify_label = classify(node,feature_lables,to_classify_vec)
@@ -114,7 +116,7 @@ def classify(my_tree,feature_lables,to_classify_vec): #type:(dict,list,list)->st
 def load_tree(filename):
     with open(filename,'r') as file_obj:
         load_dict = json.load(file_obj,ensure_ascii=True)
-        print load_dict
+        print(load_dict)
         return load_dict
 
 
@@ -153,4 +155,4 @@ if __name__ == '__main__':
         if(ret != ret_right):
             error_count += 1
     error_percentage = float(error_count) / float(len(data_set));
-    print error_percentage;
+    print(error_percentage)

@@ -30,7 +30,7 @@ def create_plot(my_tree):
 
 def get_num_leafs(my_tree): #type:(dict)->int
     num_leaf = 0
-    root_name = my_tree.keys()[0]
+    root_name =  next(iter(my_tree))
     childs = my_tree[root_name] #type:dict
     for child_name in childs.keys():
         if type(childs[child_name]).__name__ == 'dict':
@@ -42,7 +42,7 @@ def get_num_leafs(my_tree): #type:(dict)->int
 
 def get_num_depth(my_tree): #type:(dict)->int
     max_depth = 0;
-    root_name = my_tree.keys()[0]
+    root_name = next(iter(my_tree))
     childs = my_tree[root_name] #type:dict
     for child_name in childs.keys():
         if type(childs[child_name]).__name__ == 'dict':
@@ -88,13 +88,13 @@ def retrieve_tree(i):
 
 
 def plot_tree(my_tree, x_pos_begin, x_pos_end, y_pos, parent_pt,X_OFF,Y_OFF):#type:(dict,float,float,float,tuple,float,float)->void
-    node_str = my_tree.keys()[0]
+    node_str = next(iter(my_tree))
     node_pos = ((x_pos_begin+x_pos_end)/2.0,y_pos)
     plot_node(node_str,node_pos,parent_pt,DecisionNode)
     child_dict = my_tree[node_str] #type:dict
     x_child_pos = x_pos_begin
     y_child_pos = y_pos - Y_OFF
-    for key,child_node in child_dict.iteritems():
+    for key,child_node in child_dict.items():
         if( type(child_node).__name__=='dict'):
             x_child_range = X_OFF * (get_num_leafs(child_node)-1)
             x_child_end = x_child_pos + x_child_range

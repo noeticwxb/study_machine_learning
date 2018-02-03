@@ -35,7 +35,7 @@ def classify0(in_x, dataset, labels, k):
 
     sort_key = operator.itemgetter(1)
     #print classify_count
-    sorted_classify_count = sorted(classify_count.iteritems(),key=sort_key,reverse=True)
+    sorted_classify_count = sorted(classify_count.items(),key=sort_key,reverse=True)
     #print sorted_classify_count
     return sorted_classify_count[0][0]
 
@@ -83,7 +83,7 @@ def dating_class_test():
         if classify_ret != dating_labels[i]:
             num_error+=1
 
-    print "total error count %d, rate is %f" % (num_error, (float)(num_error)/(float)(count_for_test))
+    print("total error count %d, rate is %f" % (num_error, (float)(num_error)/(float)(count_for_test)))
 
 
 def img_to_vector(zip_file,file_name): #type: (zipfile.ZipFile,str)->np.ndarray
@@ -128,12 +128,13 @@ def hand_writing_class_test():
             test_label = int(test_label.split("_")[0])
             class_label = classify0(test_vec,data_set,data_label,3)
             if test_label!=class_label:
-                print "%d error to %d" % (test_label,class_label )
+                print("%d error to %d" % (test_label,class_label ))
                 num_error+=1
             else:
-                print "right get %d" % test_label
+                print("right get %d" % test_label)
+                pass
 
-        print "total error count %d, rate is %f" % (num_error, (float)(num_error) / (float)(len(test_name_list)))
+        print("total error count %d, rate is %f" % (num_error, (float)(num_error) / (float)(len(test_name_list))))
 
 if __name__ == '__main__':
     hand_writing_class_test()
