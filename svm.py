@@ -23,7 +23,7 @@ def select_rand_J(i,n):
     j = i
     while (j==i):
         j = random.uniform(0,n)
-    return j
+    return int(j)
 
 
 def clamp(val,low,high):
@@ -37,7 +37,7 @@ def clamp(val,low,high):
     return val
 
 
-def simple_svm(train_features, train_lables, C , tolerance, max_iter) -> (np.matrix,float):
+def simple_svm(train_features, train_lables, C , tolerance, max_iter) -> (np.matrix,float,np.matrix):
     feature_mat = np.mat(train_features)
     sample_count, feaure_count = np.shape(feature_mat)
     label_mat = np.mat(train_lables).transpose() # sharp: sample_count * 1
@@ -47,13 +47,13 @@ def simple_svm(train_features, train_lables, C , tolerance, max_iter) -> (np.mat
     while(itor < max_iter):
         alpha_pair_changed_count = 0
         for i in range(sample_count):
-            x_i = feature_mat[i:].transpose()
+            x_i = feature_mat[i,:].transpose()
             y_i = float(label_mat[i])
             f_x_i = float( np.multiply(label_mat,alphas).transpose() * (feature_mat * x_i) ) +  b
             error_i = f_x_i - y_i
             if ( ( (y_i*error_i < -tolerance) and  (alphas[i] < C) ) or ( ( y_i*error_i > tolerance ) and (alphas[i] > 0) ) ):
                 j = select_rand_J(i,sample_count)
-                x_j = feature_mat[j:].transpose()
+                x_j = feature_mat[j,:].transpose()
                 y_j = float(label_mat[j])
                 f_x_j = float( np.multiply(label_mat,alphas).transpose() * (feature_mat * x_j) ) +  b
                 error_j =  f_x_j - y_j
@@ -68,9 +68,9 @@ def simple_svm(train_features, train_lables, C , tolerance, max_iter) -> (np.mat
                 if L==H:
                     print("L==H")
                     continue
-                k_i_i = x_i * x_i.transpose()
-                k_j_j = x_j * x_j.transpose()
-                k_i_j = x_i * x_j.transpose()
+                k_i_i = float(x_i.transpose() * x_i)
+                k_j_j = float(x_j.transpose() * x_j)
+                k_i_j = float(x_j.transpose() * x_i)
                 eta = k_i_i + k_j_j - 2 * k_i_j
                 if(eta <= 0 ):
                     print("eta <= 0")
@@ -99,7 +99,11 @@ def simple_svm(train_features, train_lables, C , tolerance, max_iter) -> (np.mat
         else:
             itor = 0
         print("iteration numeber: %d" % itor)
-    return  alphas,b
+
+    w = np.multiply(alphas, label_mat)
+    w = np.multiply(w,feature_mat)
+    w = np.sum(w,axis=0)
+    return  alphas, b, w
 
 
 def plot(data_mat:list, label_mat:list, weights:list):
@@ -122,7 +126,7 @@ def plot(data_mat:list, label_mat:list, weights:list):
     ax.scatter(xcoord_2, ycoord_2, c='green')
 
     if weights != None:
-        x_line = np.arange(-3.0, 3.0, 0.1)
+        x_line = np.arange(0.0, 10.0, 0.1)
         y_line = (-weights[0] - weights[1] * x_line) / weights[2]
         y_line = np.asarray(y_line).flatten()
         ax.plot(x_line, y_line.flatten())
@@ -132,5 +136,10 @@ def plot(data_mat:list, label_mat:list, weights:list):
 
 if __name__ == "__main__":
     features, lables = load_dataset("data/ch06/testSet.txt")
-    #plot(features,lables,None)
-    alphas,b = simple_svm(features,lables,0.6,0.001,40)
+    alphas,b,w = simple_svm(features,lables,0.6,0.001,1)
+    weights = [float(b)]
+    l = np.asarray(w)[0].tolist()
+    weights.extend(l)
+    #print(weights)
+    plot(features,lables,weights)
+

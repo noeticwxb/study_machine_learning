@@ -11,12 +11,8 @@ print(aInvertMat)
 print(I_Mat)
 '''
 
-v = np.mat([1,2,3])
-print(v)
-v1 = np.mat([1,2,3]).transpose()
-print(v1)
-print(np.shape(v1))
-v2 = np.mat(np.ones((3,1)))
-print(np.shape(v2))
-v3 = np.multiply(v1,v2)
-print(v3)
+#v = np.mat([[1,2,3],[4,5,6]])
+
+#s = np.mat([2,3]).transpose()
+
+#print(np.multiply(s,v))
