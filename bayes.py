@@ -137,7 +137,7 @@ def cal_most_frequency(vocab_list,full_words):
     freq_dict = {}
     for vocab in vocab_list:
         freq_dict[vocab] = full_words.count(vocab)
-    sorted_freq_dict = sorted(freq_dict.iteritems(),key=operator.itemgetter(1), reverse=True)
+    sorted_freq_dict = sorted(freq_dict.items(),key=operator.itemgetter(1), reverse=True)
     return sorted_freq_dict[:30]
 
 def rss_test(feed0, feed1):
@@ -170,7 +170,7 @@ def rss_test(feed0, feed1):
     print_vocab_list_in_order2(vocab_list,full_words)
 
     # construct train_set and test_set
-    train_set = range( len(doc_list) )
+    train_set = list( range( len(doc_list) ) )
     test_set = []
     #test_set_size = len(doc_list) / 10
     test_set_size = 5
@@ -217,7 +217,7 @@ def print_vocab_list_in_order2(vocab_list, full_words):
     dict = {}
     for i in range( len(vocab_list) ):
         dict[vocab_list[i]] = full_words.count(vocab_list[i])
-    dict_sorted = sorted(dict.iteritems(),key=operator.itemgetter(1),reverse=False)
+    dict_sorted = sorted(dict.items(),key=operator.itemgetter(1),reverse=False)
     print("sorted")
     print(dict_sorted[:10])
 
@@ -225,7 +225,7 @@ def print_vocab_list_in_order(vocab_list,p_vect):
     dict = {}
     for i in range( len(vocab_list) ):
         dict[vocab_list[i]] = p_vect[i]
-    dict_sorted = sorted(dict.iteritems(),key=operator.itemgetter(1),reverse=True)
+    dict_sorted = sorted(dict.items(),key=operator.itemgetter(1),reverse=True)
     #print dict_sorted[:20]
     print("sorted")
     print(dict_sorted[:10])
