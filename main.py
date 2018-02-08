@@ -16,3 +16,8 @@ print(I_Mat)
 #s = np.mat([2,3]).transpose()
 
 #print(np.multiply(s,v))
+
+y = 1
+x= 1.2
+print(x-y)
+
