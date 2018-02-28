@@ -1,6 +1,8 @@
 import numpy as np
 import math
 import random
+import os
+import zipfile
 
 def load_dataset(filename:str)->(list, list):
     data_mat = []
@@ -100,7 +102,6 @@ def simple_svm(train_features, train_lables, C , tolerance, max_iter) -> (np.mat
             itor = 0
             print("alpha_pair_changed_count numeber: %d" % alpha_pair_changed_count)
         print("iteration numeber: %d" % itor)
-
     w = np.multiply(alphas, label_mat)
     w = np.multiply(w,feature_mat)
     w = np.sum(w,axis=0)
@@ -135,8 +136,25 @@ def plot(data_mat:list, label_mat:list, weights:list):
     plt.show()
 
 
+def kernal_trans(feature_mat:np.matrix, feature:np.matrix, kTup:list):
+    m,n = np.shape(feature_mat)
+    k = np.mat(np.zeros((m,1)))
+    if kTup[0] == "linear":
+        k = feature_mat * feature.T
+    elif kTup[0] == "rbf":
+        for j in range(m):
+            diff = feature_mat[j] - feature
+            k[j] = diff * diff.T
+        #括号没打对，调试了好久。太低级了
+        #k = np.exp(k / -1 * (kTup[1] ** 2))
+        k = np.exp( k / (-1 * (kTup[1]**2)))
+    else:
+        raise NameError("huston,wo have a problem. unknown kernel")
+    return  k
+
+
 class PlattSVM:
-    def __init__(self,data_set,class_label,C,tolerance):
+    def __init__(self,data_set,class_label,C,tolerance,kTup):
         self.feature_mat = np.mat(data_set)
         self.label_mat = np.mat(class_label).transpose()
         self.C = C
@@ -145,11 +163,14 @@ class PlattSVM:
         self.alphas = np.mat(np.zeros((self.sample_count,1)))
         self.b = 0
         self.cache = np.mat(np.zeros((self.sample_count,2)))
+        self.K = np.mat(np.zeros((self.sample_count,self.sample_count)))
+        for i in range(self.sample_count):
+            self.K[:,i] = kernal_trans(self.feature_mat,self.feature_mat[i],kTup)
+
 
     def calc_error(self,i):
-        x_i = self.feature_mat[i, :].transpose()
         y_i = float(self.label_mat[i])
-        f_x_i = float(np.multiply(self.label_mat, self.alphas).transpose() * (self.feature_mat * x_i)) + self.b
+        f_x_i = float(np.multiply(self.label_mat, self.alphas).transpose() * (self.K[:,i])) + self.b
 
         error_i = f_x_i - y_i
         return error_i
@@ -205,9 +226,9 @@ class PlattSVM:
             if L == H:
                 #print("L==H")
                 return 0
-            k_i_i = float(x_i.transpose() * x_i)
-            k_j_j = float(x_j.transpose() * x_j)
-            k_i_j = float(x_j.transpose() * x_i)
+            k_i_i = float(self.K[i,i])
+            k_j_j = float(self.K[j,j])
+            k_i_j = float(self.K[i,j])
             eta = k_i_i + k_j_j - 2 * k_i_j
             if (eta <= 0):
                 #print("eta <= 0")
@@ -259,9 +280,9 @@ class PlattSVM:
             if L == H:
                 #print("L==H")
                 return 0
-            k_i_i = float(x_i.transpose() * x_i)
-            k_j_j = float(x_j.transpose() * x_j)
-            k_i_j = float(x_j.transpose() * x_i)
+            k_i_i = float(self.K[i,i])
+            k_j_j = float(self.K[j,j])
+            k_i_j = float(self.K[i,j])
             eta = k_i_i + k_j_j - 2 * k_i_j
             if (eta <= 0):
                 #print("eta <= 0")
@@ -309,15 +330,6 @@ class PlattSVM:
             elif(num_alpha_pair_changed==0):
                 example_all = True
 
-        #print(self.alphas)
-        w = np.multiply(self.alphas, self.label_mat)
-        w = np.multiply(w,self.feature_mat)
-        w = np.sum(w,axis=0)
-
-        weights = [float(self.b)]
-        weights.extend(np.asarray(w)[0].tolist())
-        return  weights
-
     def simple_svm(self,max_itor=1):
         itor = 0
         while (itor < max_itor):
@@ -332,7 +344,7 @@ class PlattSVM:
                 print("alpha_pair_changed_count:%d" % alpha_pair_changed_count)
                 itor = 0
 
-
+    def get_linear_weigets(self):
         w = np.multiply(self.alphas, self.label_mat)
         w = np.multiply(w, self.feature_mat)
         w = np.sum(w, axis=0)
@@ -340,14 +352,147 @@ class PlattSVM:
         weights.extend(np.asarray(w)[0].tolist())
         return weights
 
-if __name__ == "__main__":
+def test_linear():
     features, lables = load_dataset("data/ch06/testSet.txt")
     use_simple_svm = False
-    platt_svm = PlattSVM(features, lables, 0.6, 0.001)
+    kTup = ["linear"]
+    platt_svm = PlattSVM(features, lables, 0.6, 0.001,kTup)
+
     if use_simple_svm:
-        weights = platt_svm.simple_svm(100)
+        platt_svm.simple_svm(100)
+        weights = platt_svm.get_linear_weigets()
         plot(features, lables, weights)
     else:
-        weights = platt_svm.svm(100)
+        platt_svm.svm(100)
+        weights = platt_svm.get_linear_weigets()
         plot(features, lables, weights)
 
+def test_none_linear(k1=1.4):
+    features, lables = load_dataset("data/ch06/testSetRBF.txt")
+    kTup = ["rbf",k1]
+    platt_svm = PlattSVM(features, lables, 200, 0.001, kTup)
+    platt_svm.svm(100)
+    support_alpha_indecies = np.nonzero(platt_svm.alphas > 0 )[0]
+    support_featues_mat = platt_svm.feature_mat[support_alpha_indecies]
+    support_label_mat = platt_svm.label_mat[support_alpha_indecies]
+    support_alphas = platt_svm.alphas[support_alpha_indecies]
+    print("support vector %d " % np.shape(support_featues_mat)[0])
+
+    m,n = np.shape(platt_svm.feature_mat)
+    error_count = 0
+    for i in range(m):
+        kernal_eval = kernal_trans(support_featues_mat,platt_svm.feature_mat[i],kTup)
+        temp:np.matrix = np.multiply(support_alphas,support_label_mat)
+        predict = temp.T * kernal_eval + platt_svm.b
+        if( np.sign(predict) != np.sign(lables[i])):
+            error_count+=1
+    print("training error rate is %f" % (float(error_count)/m) )
+    test_features,test_labels = load_dataset("data/ch06/testSetRBF2.txt")
+    test_feature_mat = np.mat(test_features)
+    test_labels_mat = np.mat(test_labels)
+    error_count = 0
+    m, n = np.shape(test_feature_mat)
+    for i in range(m):
+        kernal_eval = kernal_trans(support_featues_mat,test_feature_mat[i],kTup)
+        temp: np.matrix = np.multiply(support_alphas, support_label_mat)
+        predict = temp.T * kernal_eval + platt_svm.b
+        if( np.sign(predict) != np.sign(test_labels[i])):
+            error_count+=1
+    print("test error rate is %f" % (float(error_count)/m) )
+
+def img_to_vector(zip_file,file_name): #type: (zipfile.ZipFile,str)->np.ndarray
+    vec = np.zeros((1,1024))
+    with zip_file.open(file_name) as zip_item_file:
+        line_count = 0
+        for line in zip_item_file:
+            for i in range(32):
+                num = int(line[i])-48
+                vec[0,line_count*32+i]= num
+            line_count += 1
+    return vec
+
+def hand_writing_data_set(zip_file,train_name_list):
+    train_data_count = len(train_name_list)
+    data_label = [0]*train_data_count
+    data_set = np.zeros((train_data_count, 1024))
+    for i in range(train_data_count):
+        item_name = train_name_list[i]# type:str
+        data_set[i] = img_to_vector(zip_file,item_name)
+        label_name = item_name.replace("trainingDigits/","").replace(".txt","")
+        label_name = label_name.replace("testDigits/", "").replace(".txt", "")
+        lable_num = label_name.split("_")[0]
+        lable_num = int(lable_num)
+        data_label[i] = lable_num
+    return data_set,data_label
+
+def digital_to_label(digit_list,right_digit)->list:
+    label = []
+    for i in digit_list:
+        if i == right_digit:
+            label.append(1)
+        else:
+            label.append(-1)
+    return label
+
+
+def hand_writing_class_test(k1=0.01):
+    abs_cur_dir = os.path.abspath(os.curdir)
+    zip_file_name = os.path.join(abs_cur_dir,"data/ch06/digits.zip")
+    with zipfile.ZipFile(zip_file_name,'r') as zip_file:
+        name_list = zip_file.namelist()
+
+        train_name_list = [x for x in name_list if x.startswith("trainingDigits") and x.endswith(".txt")]
+        train_feature, train_digit = hand_writing_data_set(zip_file, train_name_list)
+        train_label = digital_to_label(train_digit,9)
+
+        #kTup = ["rbf", k1]
+        #kTup = ["rbf",0.1]
+        kTup = ["rbf", 100]
+
+        platt_svm = PlattSVM(train_feature, train_label, 200, 0.0001, kTup)
+        platt_svm.svm(100)
+
+        support_alpha_indecies = np.nonzero(platt_svm.alphas > 0)[0]
+        support_featues_mat = platt_svm.feature_mat[support_alpha_indecies]
+        support_label_mat = platt_svm.label_mat[support_alpha_indecies]
+        support_alphas = platt_svm.alphas[support_alpha_indecies]
+        print("support vector %d / %d" % ( np.shape(support_featues_mat)[0],platt_svm.sample_count) )
+
+        m, n = np.shape(platt_svm.feature_mat)
+        error_count = 0
+        for i in range(m):
+            kernal_eval = kernal_trans(support_featues_mat, platt_svm.feature_mat[i], kTup)
+            temp: np.matrix = np.multiply(support_alphas, support_label_mat)
+            predict = temp.T * kernal_eval + platt_svm.b
+            if (np.sign(predict) != np.sign(train_label[i])):
+                error_count += 1
+        print("training error rate is %f" % (float(error_count) / m))
+
+        test_name_list = [x for x in name_list if (x.startswith("testDigits") and x.endswith(".txt"))]
+        test_features, test_digit = hand_writing_data_set(zip_file, test_name_list)
+        test_labels = digital_to_label(test_digit,9)
+
+        test_feature_mat = np.mat(test_features)
+        test_labels_mat = np.mat(test_labels)
+        error_count = 0
+        m, n = np.shape(test_feature_mat)
+        for i in range(m):
+            kernal_eval = kernal_trans(support_featues_mat, test_feature_mat[i], kTup)
+            temp: np.matrix = np.multiply(support_alphas, support_label_mat)
+            predict = temp.T * kernal_eval + platt_svm.b
+            if (np.sign(predict) != np.sign(test_labels[i])):
+
+                #print("%f %f %f "% (np.sum(support_featues_mat), np.sum(test_feature_mat[i]), np.sum(kernal_eval[i])) )
+                #print("error for %f %d" % (predict, test_digit[i] ) )
+
+                error_count += 1
+            else:
+                #print("right for %d" % test_digit[i])
+                pass
+
+        print("test error rate is %f" % (float(error_count) / m))
+
+if __name__ == "__main__":
+    #test_linear();
+    #test_none_linear()
+    hand_writing_class_test()
