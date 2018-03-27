@@ -38,6 +38,52 @@ class Regres:
         ws = xTx.I * (features.T *(local_weight* lables))
         return test_point*ws
 
+    def rigde_regres(self,features:np.matrix,lables:np.matrix,lamda=0.2):
+        sample_count,feature_count = np.shape(features)
+        xTx = features.T * features
+        denom = np.eye(feature_count) * lamda
+        denom = xTx + denom
+        if np.linalg.det(denom) == 0.0:
+            print("the matrix is singular,can not be inverse")
+            return
+        return  denom.I * (features.T * lables)
+
+
+
+    def state_wise(self,features:np.matrix,lables:np.matrix,eps=0.01,num_itor = 100):
+        label_mean = np.mean(lables, 0)
+        lables = lables - label_mean
+        features = regularize(features)
+        sample_count,feature_count = np.shape(features)
+        return_mat = np.zeros((num_itor,feature_count))
+        ws = np.zeros((feature_count,1))
+        ws_best = ws.copy()
+        for i in range(num_itor):
+            lowest_error = np.inf
+            for j in range(feature_count):
+                for sign in [-1,1]:
+                    ws_test = ws.copy()
+                    ws_test[j] += sign*eps
+                    label_pred = features * ws_test
+                    error =rss_error(lables.T, label_pred.T)
+                    if error < lowest_error:
+                        lowest_error = error
+                        ws_best = ws_test
+            ws = ws_best.copy()
+            return_mat[i,:]= ws.T
+        return return_mat
+
+
+def rss_error(label,label_pred):
+    error = np.asarray(label-label_pred)
+    return (error**2).sum()
+
+
+def regularize(features_raw:np.matrix ):
+    features_mean = np.mean(features_raw,0)
+    features_var = np.var(features_raw,0)
+    features = (features_raw - features_mean)/features_var
+    return  features
 
 def test_stand_regres():
     regres = Regres()
@@ -76,13 +122,45 @@ def test_lwl_regres(k=1.0):
     fig.show()
 
 
+def test_ridge():
+    regres = Regres()
+    features_raw, lables_raw = regres.load_dataset("data/ch08/abalone.txt")
+    label_mean = np.mean(lables_raw,0)
+    lables = lables_raw - label_mean
+    features_mean = np.mean(features_raw,0)
+    features_var = np.var(features_raw,0)
+    features = (features_raw - features_mean)/features_var
+    num_test_pts = 30
+    sample_count,feature_count = np.shape(features)
+    w_mat = np.zeros((num_test_pts,feature_count))
+    for i in range(num_test_pts):
+        ws = regres.rigde_regres(features,lables,np.exp(i-10))
+        w_mat[i,:] = ws.T
+    print(w_mat)
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    ax.plot(w_mat)
+    plt.show()
+
+def test_stage_wise():
+    regres = Regres()
+    features_raw, lables_raw = regres.load_dataset("data/ch08/abalone.txt")
+    w_mat = regres.state_wise(features_raw,lables_raw,0.001,5000)
+    #print(w_mat)
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    ax.plot(w_mat)
+    plt.show()
+
 if __name__ == '__main__':
     #test_stand_regres()
     #m = np.asmatrix([[4,3],[2,10],[5,6]])
     #print(np.shape(m))
     #m.sort(1)
     #print(m)
-    test_lwl_regres(0.002)
+    #test_lwl_regres(0.002)
+    #test_ridge()
+    test_stage_wise()
 
 
 
