@@ -160,7 +160,8 @@ if __name__ == '__main__':
     #print(m)
     #test_lwl_regres(0.002)
     #test_ridge()
-    test_stage_wise()
+    #test_stage_wise()
+    print(np.sqrt(5/8))
 
 
 
